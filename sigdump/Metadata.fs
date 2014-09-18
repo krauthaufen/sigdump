@@ -229,7 +229,7 @@ module Sigdump =
         str {
 
             for (ns,types) in a.MainModule.Types |> Seq.groupBy (fun t -> t.Namespace) do
-                if ns <> null && ns <> "" then
+                if ns <> null && ns <> "" && not <| ns.StartsWith "<" then
                     yield! fmt "namespace {0}\r\n{{" [ns]
 
                     do! pushIndent
@@ -245,15 +245,27 @@ module Sigdump =
         }
 
     let private sha512 = System.Security.Cryptography.SHA512.Create()
+    let private res = DefaultAssemblyResolver()
+    do res.AddSearchDirectory @"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5"
+       
+    let private load (assPath : string) : AssemblyDefinition =
+        try
+            AssemblyDefinition.ReadAssembly assPath
+        with _ ->
+            let name = AssemblyNameReference(assPath, Version())
+            name.IsWindowsRuntime <- true
+            res.Resolve(name)
+        //AssemblyDefinition.ReadAssembly(assPath, ReaderParameters())
+        //AssemblyDefinition.ReadAssembly assPath
 
     let computeHash (assPath : string) =
-        let ass = AssemblyDefinition.ReadAssembly assPath
+        let ass = load assPath
         let data = ass |> writeAssemby |> toByteArray
         let hash = sha512.ComputeHash data
         hash |> System.Convert.ToBase64String
 
     let toString (assPath : string) =
-        let ass = AssemblyDefinition.ReadAssembly assPath
+        let ass = load assPath
         ass |> writeAssemby |> toString
 
     let test() =
