@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>sigdump</id>
+        <version>1.0.0</version>
+        <authors>krauthaufen</authors>
+        <owners>krauthaufen</owners>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>https://github.com/krauthaufen/sigdump</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>sigdump is a tool for creating C# stubs from a dll</description>
+        <summary>a tool for creating C# stubs from a dll</summary>
+        <releaseNotes>initial version</releaseNotes>
+		<copyright></copyright>
+        <language>en-US</language>
+        <tags>introspection reflection signature assembly dll</tags>
+		<dependencies>
+		  <dependency id="Mono.Cecil" version="0.9.5.4" />
+		</dependencies>
+    </metadata>
+    <files>
+        <file src="sigdump\bin\release\sigdump.exe" target="lib\net45\sigdump.exe" />
+		<file src="sigdump\bin\release\sigdump.pdb" target="lib\net45\sigdump.pdb" />
+		<file src="sigdump\bin\release\sigdump.xml" target="lib\net45\sigdump.xml" />
+    </files>
+</package>
