@@ -25,6 +25,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\sigdump.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
+    <StartArguments>"E:\Development\Aardvark 2014\Bin\Release\Aardvark.Base.dll" -h -o "C:\Users\schorsch\Desktop\test.sig"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,6 +37,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Release\sigdump.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
+    <StartArguments>"E:\Development\Aardvark 2014\Bin\Release\Aardvark.Base.dll" -o "C:\Users\schorsch\Desktop\test.sig"</StartArguments>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Cecil">
@@ -63,6 +65,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringBuilder.fs" />
     <Compile Include="Metadata.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
